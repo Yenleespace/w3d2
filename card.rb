@@ -2,7 +2,7 @@ require_relative 'board.rb'
 require_relative 'game.rb'
 
 class Card
-    attr_reader :value, :faceup
+    attr_reader :value
 
     def initialize(value)
         @value = value.to_sym
@@ -28,5 +28,5 @@ class Card
     def ==(picked_card)
         self.value == picked_card.val
     end
-    
+
 end
