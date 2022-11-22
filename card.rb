@@ -2,22 +2,31 @@ require_relative 'board.rb'
 require_relative 'game.rb'
 
 class Card
-    attr_reader :face_value, :faceup
+    attr_reader :value, :faceup
 
     def initialize(value)
-        @face_value = value
-        @faceup = false
+        @value = value.to_sym
+        @visible = false
     end
 
-    def display
-        @face_value if @faceup == true
+    def visible?
+        @visible
     end
 
     def hide
-        @faceup = false
+        @visible = false
+    end
+
+    def reveal
+        @visible = true
     end
 
     def to_s
-        @face_value.to_s
+        self.value.to_s
     end
+
+    def ==(picked_card)
+        self.value == picked_card.val
+    end
+    
 end
