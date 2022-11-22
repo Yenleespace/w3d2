@@ -7,9 +7,27 @@ class Board
     end
 
     def populate
-        chars = [a..f]
-        chars.each do |ele|
-            ele = Card.new
+        chars = ['A'..'Z'].to_a
+        arr = chars.sample(5)
+        total_cards = arr.concat(arr).shuffle
+        @grid.each_with_index do |ele1, i|
+            @grid.each_with_index do |ele2, j|
+                @grid[i][j] = Card.new(total_cards.shift) 
+            end
+        end
+    end
+
+    def render
+        @grid.each_with_index do |row, i|
+            render_row = [i]
+            row.each do |ele|
+                if ele.hide == true
+                    render_row << ele + ' '
+                else
+                    render_row << '? '
+                end
+            end
+            puts render_row.join(' ')
         end
     end
 end
